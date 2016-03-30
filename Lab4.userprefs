@@ -1,0 +1,14 @@
+﻿<Properties>
+  <MonoDevelop.Ide.Workspace />
+  <MonoDevelop.Ide.Workbench ActiveDocument="..\Team-15-Repo-master\IP2Project\Assets\Scripts\PlayerAttackScript.cs">
+    <Files>
+      <File FileName="..\Team-15-Repo-master\IP2Project\Assets\Scripts\PlayerMovementScript.cs" Line="1" Column="1" />
+      <File FileName="..\Team-15-Repo-master\IP2Project\Assets\Scripts\TimeLeftScript.cs" Line="1" Column="1" />
+      <File FileName="..\Team-15-Repo-master\IP2Project\Assets\Scripts\PlayerAttackScript.cs" Line="1" Column="1" />
+    </Files>
+  </MonoDevelop.Ide.Workbench>
+  <MonoDevelop.Ide.DebuggingService.Breakpoints>
+    <BreakpointStore />
+  </MonoDevelop.Ide.DebuggingService.Breakpoints>
+  <MonoDevelop.Ide.DebuggingService.PinnedWatches />
+</Properties>
