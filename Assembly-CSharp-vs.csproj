@@ -46,6 +46,7 @@
 	</Reference>
   </ItemGroup>
   <ItemGroup>
+     <Compile Include="Assets\PlayerInventoryScript.cs" />
      <Compile Include="Assets\Scripts\AudioManager.cs" />
      <Compile Include="Assets\Scripts\DroppedCubeScript.cs" />
      <Compile Include="Assets\Scripts\Pathfinder.cs" />
@@ -57,7 +58,7 @@
      <Compile Include="Assets\Scripts\XMLSerializeScript.cs" />
      <Compile Include="Assets\Scripts\XMLVoxelFileWriter.cs" />
  <Reference Include="Assembly-UnityScript-firstpass">
- <HintPath>C:/Users/Fraser/Desktop/WGE CW Fraser McFarlane/Library/ScriptAssemblies/Assembly-UnityScript-firstpass.dll</HintPath>
+ <HintPath>C:/Users/Fraser/Documents/Uni/Year2 SemB/WGE/WGE CW Fraser McFarlane/Library/ScriptAssemblies/Assembly-UnityScript-firstpass.dll</HintPath>
  </Reference>
  <Reference Include="UnityEngine.UI">
  <HintPath>C:/Program Files (x86)/Unity/Editor/Data/UnityExtensions/Unity/GUISystem/4.6.8/Standalone/UnityEngine.UI.dll</HintPath>

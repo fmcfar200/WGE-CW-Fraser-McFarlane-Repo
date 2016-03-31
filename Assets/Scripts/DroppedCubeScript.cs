@@ -13,7 +13,7 @@ public class DroppedCubeScript : MonoBehaviour {
 	{
 		this.gameObject.GetComponent<Rigidbody> ().AddForce (popForce);
 		this.gameObject.tag = "DropCube";
-		this.gameObject.layer = 9;
+		this.gameObject.layer = 2;
 	}
 	
 	// Update is called once per frame

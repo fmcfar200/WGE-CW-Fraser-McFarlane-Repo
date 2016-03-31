@@ -87,6 +87,7 @@ public class VoxelChunk : MonoBehaviour {
 		dropCube.transform.localScale = new Vector3 (0.25f, 0.25f, 0.25f);
 		dropCube.transform.position = new Vector3(index.x+0.5f,index.y+0.5f,index.z+0.5f);
 		dropCube.AddComponent<DroppedCubeScript> ();
+	
 	}
 
 	void OnEnable()

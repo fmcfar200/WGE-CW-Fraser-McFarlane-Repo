@@ -14,8 +14,13 @@ public class PlayerScript : MonoBehaviour {
 	public Texture2D crossHairTexture;
 	Rect crossHairPos;
 
+	PlayerInventoryScript playerInv;
+
+
 	// Use this for initialization
 	void Start () {
+		playerInv = this.gameObject.GetComponent<PlayerInventoryScript> ();
+
 
 		crossHairPos =  new Rect((Screen.width - crossHairTexture.width) / 2, 
 		                    (Screen.height - crossHairTexture.height) / 2,crossHairTexture.width,crossHairTexture.height);
@@ -24,7 +29,9 @@ public class PlayerScript : MonoBehaviour {
 	}
 
 	void Update()
-	{
+	{	
+
+
 		if (Input.GetButtonDown ("Fire1")) {
 			Vector3 v;
 			if (DigOrPlaceBlock (out v, 4,true)) 
@@ -41,7 +48,7 @@ public class PlayerScript : MonoBehaviour {
 			if (DigOrPlaceBlock(out v,4,false))
 			{
 				Debug.Log (v);
-				OnEventSetBlock(v,3);
+				OnEventSetBlock(v,playerInv.currentBlock);
 			}
 
 		}
