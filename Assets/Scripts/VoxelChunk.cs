@@ -17,6 +17,7 @@ public class VoxelChunk : MonoBehaviour {
 
 
 
+
 	// Use this for initialization
 	void Start () 
 	{
@@ -76,14 +77,24 @@ public class VoxelChunk : MonoBehaviour {
 			CreateTerrain ();
 			voxelGenerator.UpdateMesh ();
 			OnEventBlockChanged(blockType);
+			if (blockType == 0)
+			{
+				DropBlock(index,blockType);
+			}
 
 
 		}
 	}
 
+	
 	public void DropBlock(Vector3 index, int blockType)
 	{
+
 		dropCube = GameObject.CreatePrimitive (PrimitiveType.Cube);
+		DroppedBlockManager droppedBlockManager = GetComponent<DroppedBlockManager> ();
+
+		dropCube.GetComponent<Renderer> ().material.mainTexture = droppedBlockManager.blockMaterial [0];
+
 		dropCube.transform.localScale = new Vector3 (0.25f, 0.25f, 0.25f);
 		dropCube.transform.position = new Vector3(index.x+0.5f,index.y+0.5f,index.z+0.5f);
 		dropCube.AddComponent<DroppedCubeScript> ();
@@ -93,13 +104,13 @@ public class VoxelChunk : MonoBehaviour {
 	void OnEnable()
 	{
 		PlayerScript.OnEventSetBlock += SetBlock;
-		PlayerScript.OnEventDropBlock += DropBlock;
+		//PlayerScript.OnEventDropBlock += DropBlock;
 
 	}
 	void OnDisable()
 	{
 		PlayerScript.OnEventSetBlock -= SetBlock;
-		PlayerScript.OnEventDropBlock -= DropBlock;
+		//PlayerScript.OnEventDropBlock -= DropBlock;
 
 	}
 

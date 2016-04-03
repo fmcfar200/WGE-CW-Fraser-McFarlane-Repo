@@ -16,6 +16,9 @@ public class PlayerScript : MonoBehaviour {
 
 	PlayerInventoryScript playerInv;
 
+	public float overlapSphereRadius = 2.0f;
+
+
 
 	// Use this for initialization
 	void Start () {
@@ -37,7 +40,6 @@ public class PlayerScript : MonoBehaviour {
 			if (DigOrPlaceBlock (out v, 4,true)) 
 			{
 				OnEventSetBlock(v,0);
-				OnEventDropBlock(v,0);
 
 			}
 
@@ -53,6 +55,19 @@ public class PlayerScript : MonoBehaviour {
 
 		}
 	}
+
+	void FixedUpdate()
+	{
+		Collider[] colliders = Physics.OverlapSphere (transform.position, overlapSphereRadius,5);
+		foreach (Collider c in colliders) {
+			if (c.gameObject.tag == "DropCube") 
+			{	
+				c.transform.position = Vector3.MoveTowards (c.transform.position, this.transform.position, 2 * Time.deltaTime);
+			}
+		}
+	}
+
+
 	void OnGUI()
 	{
 		GUI.DrawTexture (crossHairPos, crossHairTexture);
@@ -77,6 +92,8 @@ public class PlayerScript : MonoBehaviour {
 			if (dig == true)
 			{
 				v = hit.point - hit.normal/2;
+			
+
 			}
 			else
 			{
@@ -88,6 +105,7 @@ public class PlayerScript : MonoBehaviour {
 			v.x = Mathf.Floor(v.x);
 			v.y = Mathf.Floor(v.y);
 			v.z = Mathf.Floor(v.z);
+
 			return true;
 		}
 		return false;
