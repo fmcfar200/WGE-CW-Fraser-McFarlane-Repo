@@ -51,6 +51,7 @@ public class PlayerScript : MonoBehaviour {
 			{
 				Debug.Log (v);
 				OnEventSetBlock(v,playerInv.currentBlock);
+				playerInv.blockAmounts[playerInv.currentBlock -1]--;
 			}
 
 		}
