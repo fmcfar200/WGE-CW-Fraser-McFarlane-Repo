@@ -50,8 +50,12 @@ public class PlayerScript : MonoBehaviour {
 			if (DigOrPlaceBlock(out v,4,false))
 			{
 				Debug.Log (v);
-				OnEventSetBlock(v,playerInv.currentBlock);
-				playerInv.blockAmounts[playerInv.currentBlock -1]--;
+				if (playerInv.blockAmounts[playerInv.currentBlock-1] > 0)
+				{
+					OnEventSetBlock(v,playerInv.currentBlock);
+					playerInv.blockAmounts[playerInv.currentBlock -1]--;
+				}
+
 			}
 
 		}

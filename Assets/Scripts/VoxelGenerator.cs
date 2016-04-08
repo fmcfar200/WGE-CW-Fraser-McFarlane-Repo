@@ -229,12 +229,7 @@ public class VoxelGenerator : MonoBehaviour {
 	}
 	public void CreateNegativeYFace(int x , int y , int z, string texture)
 	{
-
-//		vertexList.Add (new Vector3 (x, y, z+1));
-//		vertexList.Add (new Vector3 (x+1, y, z+1));
-//		vertexList.Add (new Vector3 (x+1, y, z));
-//		vertexList.Add (new Vector3 (x, y , z));
-
+	
 		vertexList.Add (new Vector3 (x, y, z+1));
 		vertexList.Add (new Vector3 (x,y,z));
 		vertexList.Add (new Vector3 (x+1, y, z));

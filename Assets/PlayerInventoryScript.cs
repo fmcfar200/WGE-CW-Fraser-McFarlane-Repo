@@ -16,7 +16,7 @@ public class PlayerInventoryScript : MonoBehaviour {
 
 	public Image quickInvImage;
 	public int currentBlock;
-
+	GameObject inventoryItem;
 	// Use this for initialization
 	void Start () {
 
@@ -25,7 +25,7 @@ public class PlayerInventoryScript : MonoBehaviour {
 		inventoryList = new List<InventoryItemScript> ();
 		for (int i = 0; i < blockNames.Count;i++)
 		{
-			GameObject inventoryItem = (GameObject)Instantiate(startItem);
+			inventoryItem = (GameObject)Instantiate(startItem);
 			inventoryItem.transform.SetParent(parentPanel);
 			inventoryItem.SetActive(true);
 
@@ -46,6 +46,8 @@ public class PlayerInventoryScript : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
+		UpdateInventory ();
+	
 		if (Input.GetKeyDown (KeyCode.I)) {
 			if (invOpen == false) {
 				parentPanel.gameObject.SetActive (true);
@@ -62,6 +64,18 @@ public class PlayerInventoryScript : MonoBehaviour {
 			SwitchBlock();
 		}
 	}
+
+	void UpdateInventory()
+	{
+		for (int i = 0; i < blockNames.Count;i++)
+		{
+			inventoryList[i].itemAmountText.text = blockAmounts[i].ToString();
+			inventoryList[i].itemAmount = blockAmounts[i];
+		}
+	}
+
+
+
 
 	void SwitchBlock()
 	{
