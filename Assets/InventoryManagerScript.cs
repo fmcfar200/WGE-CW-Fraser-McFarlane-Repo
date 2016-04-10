@@ -87,11 +87,7 @@ public class InventoryManagerScript : MonoBehaviour {
 		}
 		DisplayListInOrder ();
 	}
-	public void StartQuickSort()
-	{
-		inventoryList = QuickSort (inventoryList);
-		DisplayListInOrder ();
-	}
+
 	List<InventoryItemScript> QuickSort(List<InventoryItemScript> listIn)
 	{
 		if (listIn.Count <= 1)

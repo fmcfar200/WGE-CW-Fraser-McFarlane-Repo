@@ -15,6 +15,7 @@ public class PlayerInventoryScript : MonoBehaviour {
 	List<InventoryItemScript> inventoryList;
 
 	public Image quickInvImage;
+	public Text quickInvAmount;
 	public int currentBlock;
 	GameObject inventoryItem;
 	// Use this for initialization
@@ -113,5 +114,158 @@ public class PlayerInventoryScript : MonoBehaviour {
 			startPosition.y -= yOffSet;
 		}
 
+	}
+	public void SelectionSortInventory()
+	{
+		//iterate through every item in the list except from the last
+		for (int i = 0; i < inventoryList.Count-1; i++) 
+		{
+			int minIndex = i;
+			//iterate through unsorted portions of the list
+			for (int j = i; j < inventoryList.Count;j++)
+			{
+				if (inventoryList[j].itemAmount < inventoryList[minIndex].itemAmount)
+				{
+					minIndex = j;
+					
+				}
+			}
+			//swap min index into pos
+			if (minIndex!=i)
+			{
+				InventoryItemScript iis = inventoryList[i];
+				inventoryList[i] = inventoryList[minIndex];
+				inventoryList[minIndex] = iis;
+				
+			}
+		}
+		DisplayListInOrder ();
+	}
+	public void InsertionSortInventory()
+	{
+		for (int i = 1; i < inventoryList.Count; i++) 
+		{
+			int j = i;
+			while (j > 0 && inventoryList[j-1].itemAmount > inventoryList[j].itemAmount)
+			{
+				InventoryItemScript iis = inventoryList[j];
+				inventoryList[j] = inventoryList[j-1];
+				inventoryList[j-1] = iis;
+				j--;
+			}
+		}
+		DisplayListInOrder ();
+	}
+
+	public void StartQuickSort()
+	{
+		inventoryList = QuickSort (inventoryList);
+		DisplayListInOrder ();
+	}
+
+	public void StartMergeSort()
+	{
+		inventoryList = MergeSort (inventoryList);
+		DisplayListInOrder ();
+	}
+
+	List<InventoryItemScript> MergeSort(List<InventoryItemScript> listIn)
+	{
+		if (listIn.Count <= 1) 
+		{
+			return listIn;
+		}
+
+		List<InventoryItemScript> leftList = new List<InventoryItemScript>();
+		List<InventoryItemScript> rightList = new List<InventoryItemScript>();
+		int mid = listIn.Count / 2;
+
+		for (int i = 0; i < mid; i++) 
+		{
+			leftList.Add(listIn[i]);
+		}
+		for (int i = mid; i < listIn.Count; i++) {
+			rightList.Add(listIn[i]);
+		}
+
+
+		MergeSort (leftList);
+		MergeSort (rightList);
+
+		//merge left and right
+		listIn = Merge (leftList, rightList);
+		for (int k = 0; k < listIn.Count; k++) {
+			Debug.Log(listIn[k].itemAmount.ToString());
+		}
+		return listIn;
+	}
+
+	List<InventoryItemScript> Merge(List<InventoryItemScript> l , List<InventoryItemScript> r)
+	{
+		List<InventoryItemScript> m = new List<InventoryItemScript> (); //list to hold merged elements
+		int i = 0;
+		int j = 0;
+
+		while (i < l.Count && j < r.Count) 
+		{
+			if (l[i].itemAmount < r[j].itemAmount)
+			{
+				m.Add(l[i]);
+				i++;
+			}
+			else
+			{
+				m.Add(r[i]);
+				j++;
+			}
+
+		}
+		if (i < l.Count)
+		{
+			m.AddRange(l);
+		}
+		else
+		{
+			m.AddRange(r);
+		}
+		return m;
+	}
+
+	List<InventoryItemScript> QuickSort(List<InventoryItemScript> listIn)
+	{
+		if (listIn.Count <= 1)
+		{
+			return listIn;
+			
+		}
+		//Niave pivot selection
+		int pivotIndex = 0;
+		
+		//left and right lists
+		List<InventoryItemScript> leftList = new List<InventoryItemScript>();
+		List<InventoryItemScript> rightList = new List<InventoryItemScript>();
+		for(int i = 1; i < listIn.Count;i++)
+		{
+			if (listIn[i].itemAmount > listIn[pivotIndex].itemAmount)
+			{
+				leftList.Add(listIn[i]);
+				
+			}
+			else
+			{
+				rightList.Add(listIn[i]);
+			}
+		}
+		//recurse left and right list
+		leftList = QuickSort(leftList);
+		rightList = QuickSort(rightList);
+		
+		//concatenate list : list+pivot+right
+		leftList.Add(listIn[pivotIndex]);
+		leftList.AddRange(rightList);
+		
+		return leftList;
+		
+		
 	}
 }
