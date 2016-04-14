@@ -34,18 +34,7 @@ public class VoxelChunk : MonoBehaviour {
 	}
 	void Update()
 	{
-		if (Input.GetKeyDown (KeyCode.F1)) {
-			//TEMP DISABLED SAVING
-			//XMLVoxelFileWriter.SaveChunkToXMLFile(terrainArray,"VoxelChunk");
-		}
 
-		if (Input.GetKeyDown (KeyCode.F2)) {
-			terrainArray = XMLVoxelFileWriter.LoadChunkFromXMLFile(16,"VoxelChunk");
-			CreateTerrain();
-			voxelGenerator.UpdateMesh();
-
-
-		}
 
 	}
 
@@ -160,7 +149,7 @@ public class VoxelChunk : MonoBehaviour {
 		}
 	}
 
-	void CreateTerrain()
+	public void CreateTerrain()
 	{
 		for (int x = 0; x < terrainArray.GetLength(0); x++) 
 		{

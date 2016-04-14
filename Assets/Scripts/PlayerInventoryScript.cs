@@ -53,10 +53,12 @@ public class PlayerInventoryScript : MonoBehaviour {
 			if (invOpen == false) {
 				parentPanel.gameObject.SetActive (true);
 				invOpen = true;
+				Screen.showCursor = true;
 			}
 			else  {
 				parentPanel.gameObject.SetActive (false);
 				invOpen = false;
+				Screen.showCursor = false;
 			}
 		}
 
@@ -194,9 +196,7 @@ public class PlayerInventoryScript : MonoBehaviour {
 
 		//merge left and right
 		listIn = Merge (leftList, rightList);
-		for (int k = 0; k < listIn.Count; k++) {
-			Debug.Log(listIn[k].itemAmount.ToString());
-		}
+
 		return listIn;
 	}
 
@@ -208,7 +208,7 @@ public class PlayerInventoryScript : MonoBehaviour {
 
 		while (i < l.Count && j < r.Count) 
 		{
-			if (l[i].itemAmount < r[j].itemAmount)
+			if (l[i].itemAmount <= r[j].itemAmount)
 			{
 				m.Add(l[i]);
 				i++;

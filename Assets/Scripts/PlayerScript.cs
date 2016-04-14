@@ -97,6 +97,7 @@ public class PlayerScript : MonoBehaviour {
 			if (dig == true)
 			{
 				v = hit.point - hit.normal/2;
+				Debug.Log(hit.textureCoord.ToString());
 			
 
 			}
