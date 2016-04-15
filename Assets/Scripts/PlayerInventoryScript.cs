@@ -47,7 +47,7 @@ public class PlayerInventoryScript : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
-		UpdateInventory ();
+		//TEMP// UpdateInventory ();
 	
 		if (Input.GetKeyDown (KeyCode.I)) {
 			if (invOpen == false) {
@@ -68,7 +68,7 @@ public class PlayerInventoryScript : MonoBehaviour {
 		}
 	}
 
-	void UpdateInventory()
+	public void UpdateInventory()
 	{
 		for (int i = 0; i < blockNames.Count;i++)
 		{
@@ -165,13 +165,19 @@ public class PlayerInventoryScript : MonoBehaviour {
 		DisplayListInOrder ();
 	}
 
-	public void StartMergeSort()
+	public void StartMergeSortAmountLowHigh()
 	{
-		inventoryList = MergeSort (inventoryList);
+		inventoryList = MergeSortAmountLowHigh (inventoryList);
 		DisplayListInOrder ();
 	}
 
-	List<InventoryItemScript> MergeSort(List<InventoryItemScript> listIn)
+	public void StartMergeSortAmountHighLow()
+	{
+		inventoryList = MergeSortAmountHighLow (inventoryList);
+		DisplayListInOrder();
+	}
+
+	List<InventoryItemScript> MergeSortAmountLowHigh(List<InventoryItemScript> listIn)
 	{
 		if (listIn.Count <= 1) 
 		{
@@ -191,16 +197,16 @@ public class PlayerInventoryScript : MonoBehaviour {
 		}
 
 
-		MergeSort (leftList);
-		MergeSort (rightList);
+		MergeSortAmountLowHigh (leftList);
+		MergeSortAmountLowHigh (rightList);
 
 		//merge left and right
-		listIn = Merge (leftList, rightList);
+		listIn = MergeAmountLowHigh (leftList, rightList);
 
 		return listIn;
 	}
 
-	List<InventoryItemScript> Merge(List<InventoryItemScript> l , List<InventoryItemScript> r)
+	List<InventoryItemScript> MergeAmountLowHigh(List<InventoryItemScript> l , List<InventoryItemScript> r)
 	{
 		List<InventoryItemScript> m = new List<InventoryItemScript> (); //list to hold merged elements
 		int i = 0;
@@ -215,7 +221,7 @@ public class PlayerInventoryScript : MonoBehaviour {
 			}
 			else
 			{
-				m.Add(r[i]);
+				m.Add(r[j]);
 				j++;
 			}
 
@@ -230,6 +236,66 @@ public class PlayerInventoryScript : MonoBehaviour {
 		}
 		return m;
 	}
+	List<InventoryItemScript> MergeSortAmountHighLow(List<InventoryItemScript> listIn)
+	{
+		if (listIn.Count <= 1) 
+		{
+			return listIn;
+		}
+		
+		List<InventoryItemScript> leftList = new List<InventoryItemScript>();
+		List<InventoryItemScript> rightList = new List<InventoryItemScript>();
+		int mid = listIn.Count / 2;
+		
+		for (int i = 0; i < mid; i++) 
+		{
+			leftList.Add(listIn[i]);
+		}
+		for (int i = mid; i < listIn.Count; i++) {
+			rightList.Add(listIn[i]);
+		}
+		
+		
+		MergeSortAmountHighLow (leftList);
+		MergeSortAmountHighLow (rightList);
+		
+		//merge left and right
+		listIn = MergeAmountHighLow (leftList, rightList);
+		
+		return listIn;
+	}
+	
+	List<InventoryItemScript> MergeAmountHighLow(List<InventoryItemScript> l , List<InventoryItemScript> r)
+	{
+		List<InventoryItemScript> m = new List<InventoryItemScript> (); //list to hold merged elements
+		int i = 0;
+		int j = 0;
+		
+		while (i < l.Count && j < r.Count) 
+		{
+			if (l[i].itemAmount >= r[j].itemAmount)
+			{
+				m.Add(l[i]);
+				i++;
+			}
+			else
+			{
+				m.Add(r[j]);
+				j++;
+			}
+			
+		}
+		if (i < l.Count)
+		{
+			m.AddRange(l);
+		}
+		else
+		{
+			m.AddRange(r);
+		}
+		return m;
+	}
+
 
 	List<InventoryItemScript> QuickSort(List<InventoryItemScript> listIn)
 	{
