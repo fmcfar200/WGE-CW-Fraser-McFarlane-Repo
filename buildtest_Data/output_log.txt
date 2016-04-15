@@ -1,0 +1,68 @@
+Initialize engine version: 4.6.8f1 (583461196f73)
+GfxDevice: creating device client; threaded=1
+Direct3D:
+    Version:  Direct3D 11.0 [level 11.0]
+    Renderer: AMD Radeon HD 6670 (ID=0x6758)
+    Vendor:   ATI
+    VRAM:     2034 MB
+Begin MonoManager ReloadAssembly
+Platform assembly: C:\Users\Fraser\Documents\Uni\Year2 SemB\WGE\WGE CW Fraser McFarlane\buildtest_Data\Managed\UnityEngine.dll (this message is harmless)
+Loading C:\Users\Fraser\Documents\Uni\Year2 SemB\WGE\WGE CW Fraser McFarlane\buildtest_Data\Managed\UnityEngine.dll into Unity Child Domain
+Platform assembly: C:\Users\Fraser\Documents\Uni\Year2 SemB\WGE\WGE CW Fraser McFarlane\buildtest_Data\Managed\Assembly-CSharp-firstpass.dll (this message is harmless)
+Loading C:\Users\Fraser\Documents\Uni\Year2 SemB\WGE\WGE CW Fraser McFarlane\buildtest_Data\Managed\Assembly-CSharp-firstpass.dll into Unity Child Domain
+Platform assembly: C:\Users\Fraser\Documents\Uni\Year2 SemB\WGE\WGE CW Fraser McFarlane\buildtest_Data\Managed\Assembly-CSharp.dll (this message is harmless)
+Loading C:\Users\Fraser\Documents\Uni\Year2 SemB\WGE\WGE CW Fraser McFarlane\buildtest_Data\Managed\Assembly-CSharp.dll into Unity Child Domain
+Platform assembly: C:\Users\Fraser\Documents\Uni\Year2 SemB\WGE\WGE CW Fraser McFarlane\buildtest_Data\Managed\Assembly-UnityScript-firstpass.dll (this message is harmless)
+Loading C:\Users\Fraser\Documents\Uni\Year2 SemB\WGE\WGE CW Fraser McFarlane\buildtest_Data\Managed\Assembly-UnityScript-firstpass.dll into Unity Child Domain
+Platform assembly: C:\Users\Fraser\Documents\Uni\Year2 SemB\WGE\WGE CW Fraser McFarlane\buildtest_Data\Managed\UnityEngine.UI.dll (this message is harmless)
+Loading C:\Users\Fraser\Documents\Uni\Year2 SemB\WGE\WGE CW Fraser McFarlane\buildtest_Data\Managed\UnityEngine.UI.dll into Unity Child Domain
+- Completed reload, in  0.237 seconds
+desktop: 1680x1050 60Hz; virtual: 1680x1050 at 0,0
+<RI> Initializing input.
+<RI> Input initialized.
+Platform assembly: C:\Users\Fraser\Documents\Uni\Year2 SemB\WGE\WGE CW Fraser McFarlane\buildtest_Data\Managed\System.Core.dll (this message is harmless)
+Platform assembly: C:\Users\Fraser\Documents\Uni\Year2 SemB\WGE\WGE CW Fraser McFarlane\buildtest_Data\Managed\System.dll (this message is harmless)
+Received pong from 192.168.0.10:25000
+ 
+(Filename:  Line: 836)
+
+Received pong from 25.145.93.154:25000
+ 
+(Filename:  Line: 836)
+
+Received pong from 192.168.64.1:25000
+ 
+(Filename:  Line: 836)
+
+Received pong from 192.168.209.1:25000
+ 
+(Filename:  Line: 836)
+
+Received pong from 192.168.0.10:25000
+ 
+(Filename:  Line: 836)
+
+Failed to connect. This is caused by an incorrect parameters, internal error or too many existing connections.
+ 
+(Filename:  Line: 327)
+
+Received pong from 25.145.93.154:25000
+ 
+(Filename:  Line: 836)
+
+Received pong from 192.168.64.1:25000
+ 
+(Filename:  Line: 836)
+
+Received pong from 192.168.209.1:25000
+ 
+(Filename:  Line: 836)
+
+Server Joined
+ 
+(Filename: C:/buildslave/unity/build/artifacts/StandalonePlayerGenerated/UnityEngineDebug.cpp Line: 56)
+
+The server has disconnected from the client. Most likely the server has shut down.
+ 
+(Filename:  Line: 745)
+
