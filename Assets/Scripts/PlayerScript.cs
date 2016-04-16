@@ -55,6 +55,7 @@ public class PlayerScript : MonoBehaviour {
 				{
 					OnEventSetBlock (v, playerInv.currentBlock,0);
 					playerInv.blockAmounts [playerInv.currentBlock - 1]--;
+					playerInv.UpdateInventory();
 				}
 
 			}
@@ -82,7 +83,25 @@ public class PlayerScript : MonoBehaviour {
 	void OnTriggerEnter(Collider coll)
 	{
 		if (coll.gameObject.tag == "DropCube") {
+			string cubeType = coll.gameObject.GetComponent<Renderer>().material.mainTexture.name;
+			if (cubeType == "GrassSprite")
+			{
+				playerInv.blockAmounts[0]++;
+			}
+			else if (cubeType == "DirtSprite")
+			{
+				playerInv.blockAmounts[1]++;
+			}
+			else if (cubeType == "StoneSprite")
+			{
+				playerInv.blockAmounts[2]++;
+			}
+			else
+			{
+				playerInv.blockAmounts[3]++;
+			}
 			Destroy(coll.gameObject);
+			playerInv.UpdateInventory();
 		}
 	}
 

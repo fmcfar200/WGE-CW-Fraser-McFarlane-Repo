@@ -77,7 +77,7 @@ public class VoxelChunk : MonoBehaviour {
 
 
 	
-	public void DropBlock(Vector3 index, int dropBlockType)
+	 void DropBlock(Vector3 index, int dropBlockType)
 	{
 
 		dropCube = GameObject.CreatePrimitive (PrimitiveType.Cube);
