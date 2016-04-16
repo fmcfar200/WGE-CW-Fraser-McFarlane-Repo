@@ -22,27 +22,7 @@ public class VoxelGenerator : MonoBehaviour {
 	// Use this for initialization
 	void Start () 
 	{
-//		Initialise ();
-//
-//		for (int i = 0; i < 4; i++) {
-//
-//			CreateVoxel(i,0,0,"Grass");
-//
-//		}
-//		for (int i = 0; i < 4; i++) {
-//			
-//			CreateVoxel(4,0,i,"Dirt");
-//			
-//		}
-//		for (int i = 0; i < 4; i++) {
-//			
-//			CreateVoxel(i,0,3,"Stone");
-//			
-//		}
-//
-//
-//
-//		UpdateMesh ();
+
 
 	}
 	public void Initialise()

@@ -54,7 +54,7 @@ public class VoxelChunk : MonoBehaviour {
 	}
 
 
-	public void SetBlock(Vector3 index , int blockType)
+	public void SetBlock(Vector3 index , int blockType, int destroyBlockType)
 	{
 		if((index.x > 0 && index.x < terrainArray.GetLength(0))
 		   && (index.y > 0 && index.y < terrainArray.GetLength(1))
@@ -68,21 +68,23 @@ public class VoxelChunk : MonoBehaviour {
 			OnEventBlockChanged(blockType);
 			if (blockType == 0)
 			{
-				DropBlock(index,blockType);
+				DropBlock(index,destroyBlockType);
 			}
 
 
 		}
 	}
 
+
 	
-	public void DropBlock(Vector3 index, int blockType)
+	public void DropBlock(Vector3 index, int dropBlockType)
 	{
 
 		dropCube = GameObject.CreatePrimitive (PrimitiveType.Cube);
 		DroppedBlockManager droppedBlockManager = GetComponent<DroppedBlockManager> ();
 
-		dropCube.GetComponent<Renderer> ().material.mainTexture = droppedBlockManager.blockMaterial [0];
+
+		dropCube.GetComponent<Renderer> ().material.mainTexture = droppedBlockManager.blockMaterial [dropBlockType-1];
 
 		dropCube.transform.localScale = new Vector3 (0.25f, 0.25f, 0.25f);
 		dropCube.transform.position = new Vector3(index.x+0.5f,index.y+0.5f,index.z+0.5f);

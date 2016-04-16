@@ -6,7 +6,7 @@ public class PlayerScript : MonoBehaviour {
 
 	//public VoxelChunk voxelChunk;
 
-	public delegate void EventSetBlockHandler(Vector3 v, int blockType);
+	public delegate void EventSetBlockHandler(Vector3 v, int blockType, int destroyBlockType);
 	public static event EventSetBlockHandler OnEventSetBlock;
 	public static event EventSetBlockHandler OnEventDropBlock;
 
@@ -14,14 +14,17 @@ public class PlayerScript : MonoBehaviour {
 	public Texture2D crossHairTexture;
 	Rect crossHairPos;
 
+	VoxelChunk vox;
 	PlayerInventoryScript playerInv;
-
 	public float overlapSphereRadius = 2.0f;
+
+	public int destroyedBlockTerrain;
 
 
 
 	// Use this for initialization
 	void Start () {
+		vox = GetComponent<VoxelChunk> ();
 		playerInv = this.gameObject.GetComponent<PlayerInventoryScript> ();
 
 
@@ -37,23 +40,21 @@ public class PlayerScript : MonoBehaviour {
 
 		if (Input.GetButtonDown ("Fire1")) {
 			Vector3 v;
-			if (DigOrPlaceBlock (out v, 4,true)) 
-			{
-				OnEventSetBlock(v,0);
+			if (DigOrPlaceBlock (out v, 4, true)) {
+				OnEventSetBlock (v, 0,destroyedBlockTerrain);
 
 			}
 
-		} 
-		else if (Input.GetButtonDown ("Fire2")) 
-		{
+		} else if (Input.GetButtonDown ("Fire2")) {
 			Vector3 v;
-			if (DigOrPlaceBlock(out v,4,false))
+			if (DigOrPlaceBlock (out v, 4, false)) 
 			{
+			
 				Debug.Log (v);
-				if (playerInv.blockAmounts[playerInv.currentBlock-1] > 0)
+				if (playerInv.blockAmounts [playerInv.currentBlock - 1] > 0) 
 				{
-					OnEventSetBlock(v,playerInv.currentBlock);
-					playerInv.blockAmounts[playerInv.currentBlock -1]--;
+					OnEventSetBlock (v, playerInv.currentBlock,0);
+					playerInv.blockAmounts [playerInv.currentBlock - 1]--;
 				}
 
 			}
@@ -89,7 +90,7 @@ public class PlayerScript : MonoBehaviour {
 	{
 		v = new Vector3 ();
 		Ray ray = Camera.main.ScreenPointToRay (new Vector3 (Screen.width / 2, Screen.height/2, 0));
-		
+
 		RaycastHit hit;
 		
 		if (Physics.Raycast (ray, out hit, dist)) 
@@ -97,9 +98,8 @@ public class PlayerScript : MonoBehaviour {
 			if (dig == true)
 			{
 				v = hit.point - hit.normal/2;
-				Debug.Log(hit.textureCoord.ToString());
-			
-
+				Debug.Log(hit.transform.GetComponent<VoxelChunk>().terrainArray [(int)v.x, (int)v.y, (int)v.z]);
+				destroyedBlockTerrain = hit.transform.GetComponent<VoxelChunk>().terrainArray [(int)v.x, (int)v.y, (int)v.z];
 			}
 			else
 			{
@@ -111,6 +111,7 @@ public class PlayerScript : MonoBehaviour {
 			v.x = Mathf.Floor(v.x);
 			v.y = Mathf.Floor(v.y);
 			v.z = Mathf.Floor(v.z);
+
 
 			return true;
 		}
