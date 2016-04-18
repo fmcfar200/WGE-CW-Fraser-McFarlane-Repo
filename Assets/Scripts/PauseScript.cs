@@ -14,9 +14,11 @@ public class PauseScript : MonoBehaviour {
 	VoxelGenerator voxelGenerator;
 	VoxelChunk voxelChunk;
 
+	PlayerInventoryScript playerInv;
 
-	// Use this for initialization
+	// Use this for initialization 
 	void Start () {
+		playerInv = GetComponent<PlayerInventoryScript> ();
 	
 		voxelGenerator = GameObject.Find ("Voxel_Object").GetComponent<VoxelGenerator> ();
 		voxelChunk = GameObject.Find ("Voxel_Object").GetComponent<VoxelChunk> ();
@@ -38,8 +40,8 @@ public class PauseScript : MonoBehaviour {
 	// Update is called once per frame
 	void Update () {
 	
-		if (Input.GetKeyDown (KeyCode.Escape)) {
-
+		if (Input.GetKeyDown (KeyCode.Escape)) 
+		{
 			if (paused == false)
 			{
 				paused = true;
@@ -52,15 +54,24 @@ public class PauseScript : MonoBehaviour {
 
 		if (paused) {
 			Time.timeScale = 0;
-			Screen.showCursor = true;
-			pausePanel.SetActive(true);
+			pausePanel.SetActive (true);
 
-	
-		} else {
+		}
+		else 
+		{
+			playerInv.mainCamera.enabled = true;
 			Time.timeScale = 1;
-			Screen.showCursor = false;
-		
 			pausePanel.SetActive (false);
+
+		}
+
+		 if (paused || playerInv.invOpen) {
+			Screen.showCursor = true;
+			playerInv.mainCamera.enabled = false;
+
+		} else {
+			Screen.showCursor = false;
+			playerInv.mainCamera.enabled = true;
 
 		}
 	}

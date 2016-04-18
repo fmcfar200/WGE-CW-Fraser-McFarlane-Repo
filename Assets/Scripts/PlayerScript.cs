@@ -108,31 +108,34 @@ public class PlayerScript : MonoBehaviour {
 	bool DigOrPlaceBlock(out Vector3 v, float dist, bool dig)
 	{
 		v = new Vector3 ();
-		Ray ray = Camera.main.ScreenPointToRay (new Vector3 (Screen.width / 2, Screen.height/2, 0));
-
-		RaycastHit hit;
-		
-		if (Physics.Raycast (ray, out hit, dist)) 
+		if (playerInv.invOpen == false) 
 		{
-			if (dig == true)
+			if (GetComponent<PauseScript>().paused == false)
 			{
-				v = hit.point - hit.normal/2;
-				Debug.Log(hit.transform.GetComponent<VoxelChunk>().terrainArray [(int)v.x, (int)v.y, (int)v.z]);
-				destroyedBlockTerrain = hit.transform.GetComponent<VoxelChunk>().terrainArray [(int)v.x, (int)v.y, (int)v.z];
+			Ray ray = Camera.main.ScreenPointToRay (new Vector3 (Screen.width / 2, Screen.height / 2, 0));
+
+			RaycastHit hit;
+		
+			if (Physics.Raycast (ray, out hit, dist)) 
+				{
+				if (dig == true) {
+					v = hit.point - hit.normal / 2;
+					Debug.Log (hit.transform.GetComponent<VoxelChunk> ().terrainArray [(int)v.x, (int)v.y, (int)v.z]);
+					destroyedBlockTerrain = hit.transform.GetComponent<VoxelChunk> ().terrainArray [(int)v.x, (int)v.y, (int)v.z];
+				} else {
+					v = hit.point + hit.normal / 2;
+				}
+				//offsets the hit point to the centre of the block hit
+
+				//round down to the index of the block hit
+				v.x = Mathf.Floor (v.x);
+				v.y = Mathf.Floor (v.y);
+				v.z = Mathf.Floor (v.z);
+
+
+				return true;
+				}
 			}
-			else
-			{
-				v = hit.point + hit.normal/2;
-			}
-			//offsets the hit point to the centre of the block hit
-
-			//round down to the index of the block hit
-			v.x = Mathf.Floor(v.x);
-			v.y = Mathf.Floor(v.y);
-			v.z = Mathf.Floor(v.z);
-
-
-			return true;
 		}
 		return false;
 	}

@@ -46,13 +46,12 @@
 	</Reference>
   </ItemGroup>
   <ItemGroup>
-     <Compile Include="Assets\NetworkFPCScript.cs" />
+     <Compile Include="Assets\Scene2Manager.cs" />
      <Compile Include="Assets\Scripts\AudioManager.cs" />
      <Compile Include="Assets\Scripts\DroppedBlockManager.cs" />
      <Compile Include="Assets\Scripts\DroppedCubeScript.cs" />
      <Compile Include="Assets\Scripts\InventoryItemScript.cs" />
      <Compile Include="Assets\Scripts\NetworkCubeScript.cs" />
-     <Compile Include="Assets\Scripts\Pathfinder.cs" />
      <Compile Include="Assets\Scripts\PauseScript.cs" />
      <Compile Include="Assets\Scripts\PlayerInventoryScript.cs" />
      <Compile Include="Assets\Scripts\PlayerScript.cs" />
@@ -63,6 +62,8 @@
      <Compile Include="Assets\Scripts\XMLPlayerFile.cs" />
      <Compile Include="Assets\Scripts\XMLSerializeScript.cs" />
      <Compile Include="Assets\Scripts\XMLVoxelFileWriter.cs" />
+     <Compile Include="Assets\Temp\NetworkFPCScript.cs" />
+     <Compile Include="Assets\Temp\Pathfinder.cs" />
  <Reference Include="UnityEngine.UI">
  <HintPath>C:/Program Files (x86)/Unity/Editor/Data/UnityExtensions/Unity/GUISystem/4.6.8/Standalone/UnityEngine.UI.dll</HintPath>
  </Reference>

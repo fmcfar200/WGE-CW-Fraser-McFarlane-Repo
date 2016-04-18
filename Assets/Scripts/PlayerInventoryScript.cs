@@ -6,7 +6,7 @@ using System.Collections.Generic;
 public class PlayerInventoryScript : MonoBehaviour {
 
 	public Transform parentPanel;
-	bool invOpen;
+	public bool invOpen;
 	public List<Sprite> blockSprites;
 	public List<int> blockAmounts;
 	public List<string> blockNames;
@@ -18,6 +18,7 @@ public class PlayerInventoryScript : MonoBehaviour {
 	public Text quickInvAmount;
 	public int currentBlock;
 	GameObject inventoryItem;
+	public Camera mainCamera;
 	// Use this for initialization
 	void Start () {
 
@@ -51,20 +52,30 @@ public class PlayerInventoryScript : MonoBehaviour {
 	
 		if (Input.GetKeyDown (KeyCode.I)) {
 			if (invOpen == false) {
-				parentPanel.gameObject.SetActive (true);
+
 				invOpen = true;
-				Screen.showCursor = true;
+
 			}
 			else  {
-				parentPanel.gameObject.SetActive (false);
+
 				invOpen = false;
-				Screen.showCursor = false;
+
 			}
 		}
 
 		if (Input.GetKeyDown(KeyCode.E)) {
 
 			SwitchBlock();
+		}
+
+		if (invOpen) 
+		{
+			parentPanel.gameObject.SetActive (true);
+		}
+		else 
+		{
+			parentPanel.gameObject.SetActive (false);
+
 		}
 	}
 
@@ -117,53 +128,9 @@ public class PlayerInventoryScript : MonoBehaviour {
 		}
 
 	}
-	public void SelectionSortInventory()
-	{
-		//iterate through every item in the list except from the last
-		for (int i = 0; i < inventoryList.Count-1; i++) 
-		{
-			int minIndex = i;
-			//iterate through unsorted portions of the list
-			for (int j = i; j < inventoryList.Count;j++)
-			{
-				if (inventoryList[j].itemAmount < inventoryList[minIndex].itemAmount)
-				{
-					minIndex = j;
-					
-				}
-			}
-			//swap min index into pos
-			if (minIndex!=i)
-			{
-				InventoryItemScript iis = inventoryList[i];
-				inventoryList[i] = inventoryList[minIndex];
-				inventoryList[minIndex] = iis;
-				
-			}
-		}
-		DisplayListInOrder ();
-	}
-	public void InsertionSortInventory()
-	{
-		for (int i = 1; i < inventoryList.Count; i++) 
-		{
-			int j = i;
-			while (j > 0 && inventoryList[j-1].itemAmount > inventoryList[j].itemAmount)
-			{
-				InventoryItemScript iis = inventoryList[j];
-				inventoryList[j] = inventoryList[j-1];
-				inventoryList[j-1] = iis;
-				j--;
-			}
-		}
-		DisplayListInOrder ();
-	}
 
-	public void StartQuickSort()
-	{
-		inventoryList = QuickSort (inventoryList);
-		DisplayListInOrder ();
-	}
+
+	
 
 	public void StartMergeSortAmountLowHigh()
 	{
@@ -297,41 +264,5 @@ public class PlayerInventoryScript : MonoBehaviour {
 	}
 
 
-	List<InventoryItemScript> QuickSort(List<InventoryItemScript> listIn)
-	{
-		if (listIn.Count <= 1)
-		{
-			return listIn;
-			
-		}
-		//Niave pivot selection
-		int pivotIndex = 0;
-		
-		//left and right lists
-		List<InventoryItemScript> leftList = new List<InventoryItemScript>();
-		List<InventoryItemScript> rightList = new List<InventoryItemScript>();
-		for(int i = 1; i < listIn.Count;i++)
-		{
-			if (listIn[i].itemAmount > listIn[pivotIndex].itemAmount)
-			{
-				leftList.Add(listIn[i]);
-				
-			}
-			else
-			{
-				rightList.Add(listIn[i]);
-			}
-		}
-		//recurse left and right list
-		leftList = QuickSort(leftList);
-		rightList = QuickSort(rightList);
-		
-		//concatenate list : list+pivot+right
-		leftList.Add(listIn[pivotIndex]);
-		leftList.AddRange(rightList);
-		
-		return leftList;
-		
-		
-	}
+
 }

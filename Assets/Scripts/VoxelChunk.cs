@@ -44,7 +44,9 @@ public class VoxelChunk : MonoBehaviour {
 		bool isEmpty = terrainArray [(int)voxel.x, (int)voxel.y, (int)voxel.z] == 0;
 		//is block below stone
 		bool isBelowStone = terrainArray [(int)voxel.x, (int)voxel.y-1, (int)voxel.z] == 3;
-		return isEmpty && isBelowStone;
+		bool isBelowDirt = terrainArray [(int)voxel.x, (int)voxel.y - 1, (int)voxel.z] == 2;
+
+		return isEmpty && isBelowStone && isBelowDirt;
 
 	}
 
